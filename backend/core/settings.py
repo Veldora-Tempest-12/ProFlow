@@ -140,8 +140,8 @@ AUTH_USER_MODEL = "accounts.User"
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "sandbox.smtp.mailtrap.io"
-EMAIL_HOST_USER = "1c1db3925e545a"
-EMAIL_HOST_PASSWORD = "e8c2ae1186cad5"
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 EMAIL_PORT = "2525"
 DEFAULT_FROM_EMAIL = "support@proflow.local"
 EMAIL_USE_TLS = True
