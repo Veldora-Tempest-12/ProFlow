@@ -17,7 +17,7 @@ export default function Header({ dark, toggleTheme }: HeaderProps) {
         <a href="#features" className="hover:text-primary transition-colors">
           Features
         </a>
-        <a href="#templates" className="hover:text-primary transition-colors">
+        <a href="/templates" className="hover:text-primary transition-colors">
           Templates
         </a>
         <a href="#pricing" className="hover:text-primary transition-colors">

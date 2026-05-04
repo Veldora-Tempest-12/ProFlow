@@ -5,6 +5,7 @@ import ProtectedRoute from "@/components/ProtectedRoute";
 import LoginPage from "@/pages/LoginPage";
 import RegisterPage from "@/pages/RegisterPage";
 import { Routes, Route } from "react-router-dom";
+import TemplatesPage from "@/pages/TemplatesPage";
 import { Toaster } from "@/components/ui/sonner";
 
 import { useEffect } from "react";
@@ -64,6 +65,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="/templates" element={<TemplatesPage />} />
       </Routes>
       <Toaster />
     </>

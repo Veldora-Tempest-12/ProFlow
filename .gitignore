@@ -2,6 +2,7 @@
 .kilo
 .envrc
 
+docs
 backend/.env
 graphify-out
 CLAUDE.md
