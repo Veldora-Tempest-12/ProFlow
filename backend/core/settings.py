@@ -47,6 +47,10 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt",
     "accounts",
     "project",
+    "task",
+    "logs",
+    "comment",
+    "notification",
 ]
 
 MIDDLEWARE = [
