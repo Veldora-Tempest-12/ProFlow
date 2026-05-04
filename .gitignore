@@ -2,5 +2,9 @@
 .kilo
 .envrc
 
-graphify-out
 backend/.env
+graphify-out
+CLAUDE.md
+.claude
+
+run_ast.py
