@@ -1,4 +1,4 @@
-import { Terminal } from "@/components/ui/terminal";
+import { Swirling } from "@/components/ui/swirling";
 
 /**
  * Loading – wrapper around the Wave component from UI.
@@ -7,7 +7,7 @@ import { Terminal } from "@/components/ui/terminal";
 export const Loading = () => {
   return (
     <div className="flex flex-col min-h-screen items-center justify-center p-8">
-      <Terminal className="h-24 w-42" />
+      <Swirling className="h-24 w-42" />
     </div>
   );
 };

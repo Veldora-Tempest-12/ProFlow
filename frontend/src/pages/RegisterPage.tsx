@@ -1,4 +1,6 @@
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { EyeIcon, EyeOffIcon, Loader2Icon } from "lucide-react";
+import { FaGoogle, FaGithub } from "react-icons/fa";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -6,7 +8,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "@/store/authStore";
 import { toast } from "sonner";
-import React from "react";
+import { useState, type FormEvent } from "react";
 
 /**
  * RegisterPage – centered card layout.
@@ -18,8 +20,20 @@ import React from "react";
 export default function RegisterPage() {
   const navigate = useNavigate();
   const register = useAuthStore((state) => state.register);
+  const isLoading = useAuthStore((state) => state.isLoading);
+  const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  // Initiate Google OAuth flow
+  const handleGoogleLogin = () => {
+    window.location.href = "/auth/google";
+  };
+
+  // Initiate GitHub OAuth flow
+  const handleGitHubLogin = () => {
+    window.location.href = "/auth/github";
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
@@ -34,6 +48,16 @@ export default function RegisterPage() {
     }
     if (password !== confirm_password) {
       toast.error("Passwords do not match");
+      return;
+    }
+
+    // Validate password complexity
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z0-9]).{8,}$/;
+    if (!passwordRegex.test(password)) {
+      toast.error(
+        "Password must be at least 8 characters, include uppercase, lowercase, a number, and a symbol",
+      );
       return;
     }
 
@@ -53,7 +77,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-muted/40 bg-gradient-to-br from-primary/10 via-background to-background">
+    <div className="flex flex-col min-h-screen">
       <div className="flex flex-1 items-center justify-center p-6">
         <Card className="w-full max-w-md p-6">
           <CardHeader className="space-y-2 text-center">
@@ -83,13 +107,30 @@ export default function RegisterPage() {
               </div>
               <div>
                 <Label htmlFor="password">Password</Label>
-                <Input
-                  id="password"
-                  name="password"
-                  type="password"
-                  placeholder="••••••••"
-                  required
-                />
+                <div className="relative">
+                  <Input
+                    id="password"
+                    name="password"
+                    type={showPassword ? "text" : "password"}
+                    placeholder="••••••••"
+                    required
+                    className="pr-10"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword((v) => !v)}
+                    className="absolute inset-y-0 right-0 flex items-center pr-3"
+                    aria-label={
+                      showPassword ? "Hide password" : "Show password"
+                    }
+                  >
+                    {showPassword ? (
+                      <EyeOffIcon className="h-4 w-4 text-muted-foreground" />
+                    ) : (
+                      <EyeIcon className="h-4 w-4 text-muted-foreground" />
+                    )}
+                  </button>
+                </div>
               </div>
               <div>
                 <Label htmlFor="confirmPassword">Confirm Password</Label>
@@ -111,10 +152,38 @@ export default function RegisterPage() {
                   I agree to the Terms and Conditions
                 </Label>
               </div>
-              <Button type="submit" className="w-full">
+              <Button type="submit" disabled={isLoading} className="w-full">
+                {isLoading && <Loader2Icon className="mr-2 animate-spin" />}
                 Create Account
               </Button>
             </form>
+            {/* Divider */}
+            <div className="flex items-center my-4">
+              <div className="grow border-t border-muted" />
+              <span className="px-2 text-sm text-muted-foreground">OR</span>
+              <div className="grow border-t border-muted" />
+            </div>
+
+            {/* Social Login Buttons */}
+            <div className="grid gap-2">
+              <Button
+                variant="outline"
+                className="w-full flex items-center justify-center gap-2"
+                onClick={handleGoogleLogin}
+              >
+                <FaGoogle className="h-4 w-4" />
+                Continue with Google
+              </Button>
+              <Button
+                variant="outline"
+                className="w-full flex items-center justify-center gap-2"
+                onClick={handleGitHubLogin}
+              >
+                <FaGithub className="h-4 w-4" />
+                Continue with GitHub
+              </Button>
+            </div>
+
             <div className="mt-2 text-center text-sm">
               Already have an account?{" "}
               <a href="/login" className="text-primary hover:underline">

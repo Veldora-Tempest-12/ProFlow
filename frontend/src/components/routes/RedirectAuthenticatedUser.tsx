@@ -9,7 +9,7 @@ const RedirectAuthenticatedUser = ({
   const { isAuthenticated } = useAuthStore();
 
   if (isAuthenticated) {
-    return <Navigate to="/profile" replace />;
+    return <Navigate to="/dashboard" replace />;
   }
 
   return <>{children}</>;

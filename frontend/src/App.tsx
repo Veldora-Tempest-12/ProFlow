@@ -1,16 +1,20 @@
 import LandingPage from "@/pages/LandingPage";
-import RedirectAuthenticatedUser from "@/components/RedirectAuthenticatedUser";
-import ProfilePage from "@/pages/ProfilePage";
-import ProtectedRoute from "@/components/ProtectedRoute";
+import RedirectAuthenticatedUser from "@/components/routes/RedirectAuthenticatedUser";
 import LoginPage from "@/pages/LoginPage";
 import RegisterPage from "@/pages/RegisterPage";
 import { Routes, Route } from "react-router-dom";
-import TemplatesPage from "@/pages/TemplatesPage";
 import { Toaster } from "@/components/ui/sonner";
-
 import { useEffect } from "react";
 import useAuthStore from "./store/authStore";
-import Loading from "./components/Loading";
+import Loading from "./components/layout/Loading";
+import ProtectedRoute from "./components/routes/ProtectedRoute";
+import Dashboard from "./pages/Dashboard";
+import Lifecycle from "./pages/Lifecycle";
+import Analytics from "./pages/Analytics";
+import Projects from "./pages/Projects";
+import Team from "./pages/Team";
+import Templates from "./pages/Templates";
+import CreateProject from "./pages/CreateProject";
 
 function App() {
   const isCheckingAuth = useAuthStore((state) => state.isCheckingAuth);
@@ -58,14 +62,61 @@ function App() {
           }
         />
         <Route
-          path="/profile"
+          path="/dashboard"
           element={
             <ProtectedRoute>
-              <ProfilePage />
+              <Dashboard />
             </ProtectedRoute>
           }
         />
-        <Route path="/templates" element={<TemplatesPage />} />
+        <Route
+          path="/lifecycle"
+          element={
+            <ProtectedRoute>
+              <Lifecycle />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/analytics"
+          element={
+            <ProtectedRoute>
+              <Analytics />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/projects"
+          element={
+            <ProtectedRoute>
+              <Projects />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/team"
+          element={
+            <ProtectedRoute>
+              <Team />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/templates"
+          element={
+            <ProtectedRoute>
+              <Templates />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/create-project"
+          element={
+            <ProtectedRoute>
+              <CreateProject />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
       <Toaster />
     </>

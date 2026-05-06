@@ -11,7 +11,6 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { HiOutlineArrowRight } from "react-icons/hi";
 import { BiGitBranch } from "react-icons/bi";
-import { IoIosArrowDown } from "react-icons/io";
 import { FaGithub } from "react-icons/fa";
 import {
   MdOutlineCheckCircle,
@@ -21,12 +20,14 @@ import {
   MdOutlineBarChart,
   MdOutlineNotificationsNone,
 } from "react-icons/md";
+import { BGPattern } from "@/components/ui/bg-pattern";
 
 /**
  * LandingPage – Updated to use React Icons for all UI elements.
  * Maintains the dark-mode capable, clean typography and interactive
  * elements described in the original design[cite: 1].
  */
+
 export default function LandingPage() {
   const [dark, setDark] = useState(() => {
     if (typeof window !== "undefined") {
@@ -43,30 +44,31 @@ export default function LandingPage() {
   const toggleTheme = () => setDark((prev) => !prev);
 
   return (
-    <div className="font-sans text-foreground bg-background min-h-svh overflow-x-hidden scroll-smooth">
+    <div className="font-sans text-foreground  min-h-svh overflow-x-hidden scroll-smooth">
       {/* Navigation */}
       <Header dark={dark} toggleTheme={toggleTheme} />
 
       {/* Hero Section */}
       <section
         id="hero"
-        className="flex flex-col items-center justify-center min-h-screen text-center bg-gradient-to-br from-primary/10 via-background to-background"
+        className="relative flex flex-col items-center justify-center min-h-screen text-center"
       >
-        <h1 className="text-5xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-500 animate-pulse">
+        <BGPattern variant="grid" mask="fade-edges" />
+        <h1 className="text-5xl md:text-6xl font-bold bg-clip-text text-transparent bg-linear-to-r from-primary to-chart-2 ">
           Build better software with{" "}
           <span className="relative inline-block">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-indigo-500 to-purple-600">
+            <span className="bg-clip-text bg-linear-to-r from-chart-4 via-chart-5 to-chart-5">
               ProFlow
             </span>
           </span>
         </h1>
         <p className="mt-4 text-lg md:text-xl max-w-2xl">
-          ProFlow is a task management tracker for software projects. Track issues,
-          manage sprints, and ship code — from backlog to production.
+          ProFlow is a task management tracker for software projects. Track
+          issues, manage sprints, and ship code — from backlog to production.
         </p>
         <div className="mt-8 flex flex-col sm:flex-row gap-4 items-center justify-center">
           <Button
-            className="hover:scale-105 hover:shadow-xl text-white transition-all"
+            className="hover:scale-105 hover:shadow-xl transition-all"
             size="lg"
           >
             <a
@@ -91,7 +93,11 @@ export default function LandingPage() {
           </Button>
         </div>
         <div className="mt-12 w-full max-w-4xl h-64 bg-card rounded-2xl shadow-2xl shadow-primary/20 flex items-center justify-center">
-          <div className="text-muted-foreground" role="img" aria-label="Dashboard mockup placeholder"></div>
+          <div
+            className="text-muted-foreground"
+            role="img"
+            aria-label="Dashboard mockup placeholder"
+          ></div>
         </div>
       </section>
 
@@ -103,7 +109,8 @@ export default function LandingPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto px-4">
           <div className="bg-card rounded-2xl p-6 border border-border/50 hover:shadow-lg transition-all">
             <h3 className="text-lg font-medium mb-2 flex items-center">
-              <MdOutlineBarChart className="mr-2 text-xl" aria-hidden="true" /> Time Tracking
+              <MdOutlineBarChart className="mr-2 text-xl" aria-hidden="true" />{" "}
+              Time Tracking
             </h3>
             <div className="h-24 bg-muted rounded-md flex items-center justify-center mt-4">
               <span className="text-muted-foreground text-sm">
@@ -114,7 +121,11 @@ export default function LandingPage() {
 
           <div className="bg-card rounded-2xl p-6 border border-border/50 hover:shadow-lg transition-all">
             <h3 className="text-lg font-medium mb-2 flex items-center">
-              <MdOutlineNotificationsNone className="mr-2 text-xl" aria-hidden="true" /> @Mentions
+              <MdOutlineNotificationsNone
+                className="mr-2 text-xl"
+                aria-hidden="true"
+              />{" "}
+              @Mentions
             </h3>
             <div className="h-24 bg-muted rounded-md flex items-center justify-center mt-4">
               <span className="text-muted-foreground text-sm">
@@ -125,7 +136,8 @@ export default function LandingPage() {
 
           <div className="bg-card rounded-2xl p-6 border border-border/50 hover:shadow-lg transition-all">
             <h3 className="text-lg font-medium mb-2 flex items-center">
-              <BiGitBranch className="mr-2 text-xl" aria-hidden="true" /> Git Sync
+              <BiGitBranch className="mr-2 text-xl" aria-hidden="true" /> Git
+              Sync
             </h3>
             <div className="h-24 bg-muted rounded-md flex items-center justify-center mt-4">
               <span className="text-muted-foreground text-sm">
@@ -136,7 +148,11 @@ export default function LandingPage() {
           {/* Additional Features */}
           <div className="bg-card rounded-2xl p-6 border border-border/50 hover:shadow-lg transition-all">
             <h3 className="text-lg font-medium mb-2 flex items-center">
-              <MdOutlineAssignment className="mr-2 text-xl" aria-hidden="true" /> Project Templates
+              <MdOutlineAssignment
+                className="mr-2 text-xl"
+                aria-hidden="true"
+              />{" "}
+              Project Templates
             </h3>
             <div className="h-24 bg-muted rounded-md flex items-center justify-center mt-4">
               <span className="text-muted-foreground text-sm">
@@ -146,7 +162,8 @@ export default function LandingPage() {
           </div>
           <div className="bg-card rounded-2xl p-6 border border-border/50 hover:shadow-lg transition-all">
             <h3 className="text-lg font-medium mb-2 flex items-center">
-              <FaGithub className="mr-2 text-xl" aria-hidden="true" /> Integrations
+              <FaGithub className="mr-2 text-xl" aria-hidden="true" />{" "}
+              Integrations
             </h3>
             <div className="h-24 bg-muted rounded-md flex items-center justify-center mt-4">
               <span className="text-muted-foreground text-sm">
@@ -156,7 +173,11 @@ export default function LandingPage() {
           </div>
           <div className="bg-card rounded-2xl p-6 border border-border/50 hover:shadow-lg transition-all">
             <h3 className="text-lg font-medium mb-2 flex items-center">
-              <MdOutlineCheckCircle className="mr-2 text-xl" aria-hidden="true" /> Activity Log
+              <MdOutlineCheckCircle
+                className="mr-2 text-xl"
+                aria-hidden="true"
+              />{" "}
+              Activity Log
             </h3>
             <div className="h-24 bg-muted rounded-md flex items-center justify-center mt-4">
               <span className="text-muted-foreground text-sm">
@@ -167,8 +188,144 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Templates Section */}
+      <section id="templates" className="py-16 bg-background">
+        <h2 className="text-center text-3xl font-semibold mb-12">
+          Project Templates
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto px-4">
+          <div className="bg-card rounded-2xl p-6 border border-border/50 hover:shadow-lg transition-all">
+            <h3 className="text-lg font-medium mb-2 flex items-center">
+              <MdOutlineAssignment
+                className="mr-2 text-xl"
+                aria-hidden="true"
+              />{" "}
+              Template 1
+            </h3>
+            <div className="h-24 bg-muted rounded-md flex items-center justify-center mt-4">
+              <span className="text-muted-foreground text-sm">
+                [Template preview]
+              </span>
+            </div>
+          </div>
+          <div className="bg-card rounded-2xl p-6 border border-border/50 hover:shadow-lg transition-all">
+            <h3 className="text-lg font-medium mb-2 flex items-center">
+              <MdOutlineAssignment
+                className="mr-2 text-xl"
+                aria-hidden="true"
+              />{" "}
+              Template 2
+            </h3>
+            <div className="h-24 bg-muted rounded-md flex items-center justify-center mt-4">
+              <span className="text-muted-foreground text-sm">
+                [Template preview]
+              </span>
+            </div>
+          </div>
+          <div className="bg-card rounded-2xl p-6 border border-border/50 hover:shadow-lg transition-all">
+            <h3 className="text-lg font-medium mb-2 flex items-center">
+              <MdOutlineAssignment
+                className="mr-2 text-xl"
+                aria-hidden="true"
+              />{" "}
+              Template 3
+            </h3>
+            <div className="h-24 bg-muted rounded-md flex items-center justify-center mt-4">
+              <span className="text-muted-foreground text-sm">
+                [Template preview]
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      <section
+        id="pricing"
+        className="py-16 bg-linear-to-b from-background to-background/90"
+      >
+        <h2 className="text-center text-3xl font-semibold mb-12">Pricing</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto px-4">
+          <div className="bg-card rounded-2xl p-6 border border-border/50 hover:shadow-lg transition-all">
+            <h3 className="text-lg font-medium mb-2">Basic</h3>
+            <p className="mt-2 text-2xl font-bold text-primary">$0</p>
+            <p className="mt-4 text-muted-foreground">
+              For individual developers
+            </p>
+            <ul className="mt-6 space-y-2 text-sm text-muted-foreground">
+              <li>Unlimited public projects</li>
+              <li>Basic time tracking</li>
+              <li>Community support</li>
+            </ul>
+            <Button className="mt-6 w-full">Get Started</Button>
+          </div>
+          <div className="bg-card rounded-2xl p-6 border border-border/50 hover:shadow-lg transition-all">
+            <h3 className="text-lg font-medium mb-2">Pro</h3>
+            <p className="mt-2 text-2xl font-bold text-primary">$12</p>
+            <p className="mt-4 text-muted-foreground">For growing teams</p>
+            <ul className="mt-6 space-y-2 text-sm text-muted-foreground">
+              <li>Unlimited private projects</li>
+              <li>Advanced reporting</li>
+              <li>Priority support</li>
+            </ul>
+            <Button className="mt-6 w-full">Get Started</Button>
+          </div>
+          <div className="bg-card rounded-2xl p-6 border border-border/50 hover:shadow-lg transition-all">
+            <h3 className="text-lg font-medium mb-2">Enterprise</h3>
+            <p className="mt-2 text-2xl font-bold text-primary">Custom</p>
+            <p className="mt-4 text-muted-foreground">
+              For large organizations
+            </p>
+            <ul className="mt-6 space-y-2 text-sm text-muted-foreground">
+              <li>Custom features</li>
+              <li>Dedicated support</li>
+              <li>On-premise options</li>
+            </ul>
+            <Button className="mt-6 w-full">Contact Sales</Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Changelog Section */}
+      <section id="changelog" className="py-16 bg-background">
+        <h2 className="text-center text-3xl font-semibold mb-12">Changelog</h2>
+        <div className="max-w-2xl mx-auto px-4 space-y-6">
+          <div className="bg-card rounded-2xl p-6 border border-border/50">
+            <h3 className="text-lg font-medium mb-2 flex items-center">
+              <MdOutlineCode className="mr-2 text-xl" aria-hidden="true" />{" "}
+              Version 1.0.0
+            </h3>
+            <p className="text-muted-foreground">
+              Initial release of ProFlow with core features: task management,
+              time tracking, and GitHub integration.
+            </p>
+            <p className="mt-2 text-xs text-muted-foreground">May 1, 2026</p>
+          </div>
+          <div className="bg-card rounded-2xl p-6 border border-border/50">
+            <h3 className="text-lg font-medium mb-2 flex items-center">
+              <MdOutlineCode className="mr-2 text-xl" aria-hidden="true" />{" "}
+              Version 1.1.0
+            </h3>
+            <p className="text-muted-foreground">
+              Added project templates, improved UI, and bug fixes.
+            </p>
+            <p className="mt-2 text-xs text-muted-foreground">May 15, 2026</p>
+          </div>
+          <div className="bg-card rounded-2xl p-6 border border-border/50">
+            <h3 className="text-lg font-medium mb-2 flex items-center">
+              <MdOutlineCode className="mr-2 text-xl" aria-hidden="true" />{" "}
+              Version 1.2.0
+            </h3>
+            <p className="text-muted-foreground">
+              Introduced analytics dashboard and improved notification system.
+            </p>
+            <p className="mt-2 text-xs text-muted-foreground">May 29, 2026</p>
+          </div>
+        </div>
+      </section>
+
       {/* Workflow Tabs */}
-      <section className="py-16 bg-gradient-to-b from-background to-background/90">
+      <section className="py-16 bg-linear-to-b from-background to-background/90">
         <h2 className="text-center text-3xl font-semibold mb-8">
           From idea to shipped
         </h2>

@@ -28,8 +28,38 @@ export default function Footer() {
               </a>
             </li>
             <li>
+              <a href="/templates" className="hover:text-primary">
+                Templates
+              </a>
+            </li>
+            <li>
               <a href="#pricing" className="hover:text-primary">
                 Pricing
+              </a>
+            </li>
+            <li>
+              <a href="#changelog" className="hover:text-primary">
+                Changelog
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div className="space-y-2">
+          <h4 className="font-medium mb-2">Support</h4>
+          <ul className="space-y-1 text-muted-foreground">
+            <li>
+              <a href="#" className="hover:text-primary">
+                Documentation
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:text-primary">
+                Contact Us
+              </a>
+            </li>
+            <li>
+              <a href="#" className="hover:text-primary">
+                Status
               </a>
             </li>
           </ul>
